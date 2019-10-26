@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <title>Currency Exchange</title>
+</head>
+
+<body>
+  <h1>Exchange Rates</h1>
+  
+  <div id="app">
+    <div v-if="cantfind">
+      <p>
+        Sorry, We could not find the currency {{ find }}<br>
+        Enter a valid 3 letter Currency ID (ex. EUR) to view exchange rates for that currency<br>
+        <input v-model="currency" placeholder="Currency ID">
+        <button v-on:click="search">Search</button>
+      </p>
+      </div>
+    <div v-else>
+      <p>Enter a valid 3 letter Currency ID (ex. EUR) to view exchange rates for that currency</p>
+       <input v-model="currency" placeholder="Currency ID">
+        <button v-on:click="search">Search</button>
+    <h2>Displaying exchange rates for {{current.base}}</h2>
+    <ul id="Rates">
+      <li v-for="(key, item) in current.rates">{{ item }} - {{ key }}</li>
+    </ul>
+    <p>Data as of {{current.date}}, {{current.time_last_updated}}</p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="script_.js"></script>
+</body>
+
+</html>
